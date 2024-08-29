@@ -32,12 +32,12 @@
     fsType = "vfat";
     options = ["fmask=0022" "dmask=0022"];
   };
-  fileSystems."/persist" = {
-    neededForBoot = true;
-    device = "/dev/disk/by-uuid/eebd21e7-384d-420e-80bd-7842bdb2efd0";
-    fsType = "btrfs";
-    options = ["noatime" "discard" "subvol=@persist" "compress=zstd"];
-  };
+  # fileSystems."/persist" = {
+  #   neededForBoot = true;
+  #   device = "/dev/disk/by-uuid/eebd21e7-384d-420e-80bd-7842bdb2efd0";
+  #   fsType = "btrfs";
+  #   options = ["noatime" "discard" "subvol=@persist" "compress=zstd"];
+  # };
   #
   swapDevices = [{device = "/dev/disk/by-uuid/a02c097b-2be9-4321-84dc-dfd8333fe5b7";}];
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -49,10 +49,9 @@
   services.xserver.videoDrivers = ["nvidia"];
   boot.kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
   # Enable OpenGL
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    # driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
   # Load nvidia driver for Xorg and Wayland
   hardware.nvidia = {

@@ -124,4 +124,8 @@
       package = pkgs.jre;
     };
   };
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = true;
+  };
 }

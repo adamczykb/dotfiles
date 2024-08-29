@@ -30,7 +30,7 @@
             ]
             ++ (import ./shell/packages.nix {inherit pkgs;});
           shellHook = ''
-            nucleus
+         devenv 
           '';
         };
 
@@ -63,10 +63,10 @@
     impermanence.url = "github:nix-community/impermanence";
     nix-colors.url = "github:Misterio77/nix-colors";
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # home-manager = {
+    #   url = "github:nix-community/home-manager";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # a tree-wide formatter
     treefmt-nix = {
@@ -95,9 +95,6 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-    lyricsapi = {
-      url = "github:sioodmy/lyricsapi";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    
   };
 }

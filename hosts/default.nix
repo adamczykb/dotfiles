@@ -7,7 +7,7 @@
   core = ../system/core;
   bootloader = ../system/core/bootloader.nix;
   impermanence = ../system/core/impermanence.nix;
-  server = ../system/server;
+  # server = ../system/server;
   wayland = ../system/wayland;
   hw = inputs.nixos-hardware.nixosModules;
   agenix = inputs.agenix.nixosModules.age;
@@ -30,7 +30,7 @@ in {
   #    specialArgs = {inherit inputs;};
   #  };
 
-  # x86 home server
+  # x86 GPU server
   perun = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     modules =
@@ -41,7 +41,8 @@ in {
         ./perun
         bootloader
         wayland
-        impermanence
+        # impermanence
+        agenix
       ]
       ++ shared;
     specialArgs = {inherit inputs;};

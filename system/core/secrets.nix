@@ -18,18 +18,6 @@
   };
 in {
   age.secrets = lib.mkMerge [
-    (forHost ["calypso"] ../../secrets/syncthing-calypso-key.age "syncthing-calypso-key" user)
-    (forHost ["calypso"] ../../secrets/syncthing-calypso-cert.age "syncthing-calypso-cert" user)
-    # TODO: rework
-    (forHost ["calypso"] ../../secrets/radicale-pass.age "radicale-pass" user)
-    (forHost ["prometheus"] ../../secrets/mailserver.age "mailserver" {mode = "400";})
-    (forHost ["prometheus"] ../../secrets/caldav.age "caldav" {mode = "400";})
-    (forHost ["prometheus"] ../../secrets/discordtoken.age "discordtoken" {mode = "400";})
-
-    (forHost ["iapetus"] ../../secrets/radicale.age "radicale" {
-      owner = "radicale";
-      group = "radicale";
-    })
   ];
   # age.secrets.syncthing-key = {
   #   file = syncthing-key.age;

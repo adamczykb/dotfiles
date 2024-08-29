@@ -25,7 +25,7 @@ in
       {
         wrappers =
           {
-            nucleus = {
+            zsh = {
               basePackage = pkgs.zsh;
               pathAdd = packages;
               env = {
@@ -33,16 +33,15 @@ in
                 ZDOTDIR.value = "${zconfig}/bin";
               };
               renames = {
-                "zsh" = "nucleus";
-              };
+                 "zsh" = "devenv";
+               };
             };
-          }
-          // configs;
+          } // configs;
       }
     ];
   })
   .overrideAttrs (_: {
     passthru = {
-      shellPath = "/bin/nucleus";
+      shellPath = "/bin/devenv";
     };
   })

@@ -1,25 +1,14 @@
 {lib, ...}: {
-  # services.openssh = {
-  #   enable = lib.mkDefault false;
-  #   settings = {
-  #     PermitRootLogin = lib.mkForce "yes";
-  #     UseDns = false;
-  #     X11Forwarding = false;
-  #     PasswordAuthentication = lib.mkForce false;
-  #     KbdInteractiveAuthentication = false;
-  #   };
-  #   openFirewall = true;
-  #   ports = [22];
-  #   hostKeys = [
-  #     {
-  #       bits = 4096;
-  #       path = "/etc/ssh/ssh_host_rsa_key";
-  #       type = "rsa";
-  #     }
-  #     {
-  #       path = "/etc/ssh/ssh_host_ed25519_key";
-  #       type = "ed25519";
-  #     }
-  #   ];
-  # };
+  # Enable the OpenSSH daemon.
+  services.openssh = {
+    enable = true;
+    ports = [22];
+    settings = {
+      PasswordAuthentication = true;
+      AllowUsers = ["adamczykb"]; # Allows all users by default. Can be [ "user1" "user2" ]
+      UseDns = true;
+      X11Forwarding = false;
+      PermitRootLogin = "prohibit-password"; # "yes", "without-password", "prohibit-password", "forced-commands-only", "no"
+    };
+  };
 }

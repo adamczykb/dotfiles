@@ -44,11 +44,6 @@
   };
 
   colorScheme = inputs.nix-colors.colorSchemes.everforest;
-  # homix.".config/kanshi/config".text = ''
-  #   profile {
-  #     output eDP-1 enable scale 1.0
-  #   }
-  # '';
 
   hardware = {
     graphics.enable = true;

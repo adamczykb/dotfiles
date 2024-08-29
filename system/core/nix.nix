@@ -32,7 +32,6 @@
       permittedInsecurePackages = [
         # "openssl-1.1.1u"
         # "electron-25.9.0"
-        # "python3.12-youtube-dl-2021.12.17"
       ];
     };
   };

@@ -5,10 +5,10 @@
   ...
 }: {
   imports = [
-    inputs.home-manager.nixosModules.default
+    # inputs.home-manager.nixosModules.default
   ];
 
-  # programs.zsh.enable = true;
+  programs.zsh.enable = true;
   services.openssh = {
     enable = true;
     openFirewall = true;
@@ -62,18 +62,15 @@
         ];
         uid = 1000;
         openssh.authorizedKeys.keys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE9ExEl6WqtCI4yCqbSAhAGmzvVp/nYADbgy/Qi4AKQy sioodmy@anthe"
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH+S9LPxp3Mmha1keHlwc0iVq4CMbHvzAAwuYE2go7io sioodmy@calypso"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICVw2iutcGsoc+y9QkU0EJ7Sn0raIrGxNt4zdRdficKr adamczykb@perun"
         ];
       };
 
-      root = {
-        openssh.authorizedKeys.keys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE9ExEl6WqtCI4yCqbSAhAGmzvVp/nYADbgy/Qi4AKQy sioodmy@anthe"
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH+S9LPxp3Mmha1keHlwc0iVq4CMbHvzAAwuYE2go7io sioodmy@calypso"
-        ];
-        shell = pkgs.bashInteractive;
-      };
+      # root = {
+      #   openssh.authorizedKeys.keys = [
+      #   ];
+      #   shell = pkgs.bashInteractive;
+      # };
     };
   };
 }

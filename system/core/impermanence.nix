@@ -20,10 +20,9 @@ in {
         group = "users";
       }) (
         [
-          "Downloads"
           "dev"
         ]
-        ++ forEach ["syncthing" "Signal" "niri" "nicotine" "river"] (
+        ++ forEach [ ] (
           x: ".config/${x}"
         )
         ++ forEach ["tealdeer" "keepassxc" "nix" "starship" "nix-index" "librewolf" "zsh" "nvim"] (
