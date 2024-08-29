@@ -40,7 +40,7 @@
     git
     uutils-coreutils-noprefix
     btrfs-progs
-    cifs-utils
+    # cifs-utils
     appimage-run
     starship # having starship here means pkgs.startship will be stored during build and not during promptInit
   ];
@@ -52,7 +52,7 @@
   hardware.ledger.enable = true;
 
   i18n = let
-    defaultLocale = "en_US.UTF-8";
+    defaultLocale = "en_GB.UTF-8";
     pl = "pl_PL.UTF-8";
   in {
     inherit defaultLocale;
@@ -78,7 +78,7 @@
   in {
     font = "${pkgs.terminus_font}/share/consolefonts/ter-${variant}.psf.gz";
     earlySetup = true;
-    keyMap = "pl";
+    keyMap = "pl2";
   };
 
   boot.binfmt.registrations = lib.genAttrs ["appimage" "AppImage"] (ext: {
@@ -119,9 +119,6 @@
     # help manage android devices via command line
     adb.enable = true;
 
-    # "saying java is good because it runs on all systems is like saying
-    # anal sex is good because it works on all species"
-    # - sun tzu
     java = {
       enable = true;
       package = pkgs.jre;

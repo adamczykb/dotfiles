@@ -4,9 +4,9 @@
     lfs.enable = true;
     config = {
       user = {
-        email = "hello@sioodmy.dev";
-        name = "sioodmy";
-        signingKey = "056CFD15A9F99B0E";
+        email = "contact@bartekadamczyk.eu";
+        name = "adamczykb";
+        # signingKey = "056CFD15A9F99B0E";
       };
       init = {defaultBranch = "main";};
       branch.autosetupmerge = "true";

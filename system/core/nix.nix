@@ -7,7 +7,7 @@
 }: {
   environment = {
     # set channels (backwards compatibility)
-    sessionVariables.FLAKE = "/home/sioodmy/dev/dotfiles";
+    sessionVariables.FLAKE = "/home/adamczykb/dev/dotfiles";
     etc."nix/flake-channels/nixpkgs".source = inputs.nixpkgs;
 
     systemPackages =
@@ -27,15 +27,12 @@
 
   nixpkgs = {
     config = {
-      # Wolność kocham i rozumiem
-      # Wolności oddać nie umiem
-      # <3333
       allowUnfree = false;
       allowBroken = true;
       permittedInsecurePackages = [
-        "openssl-1.1.1u"
-        "electron-25.9.0"
-        "python3.12-youtube-dl-2021.12.17"
+        # "openssl-1.1.1u"
+        # "electron-25.9.0"
+        # "python3.12-youtube-dl-2021.12.17"
       ];
     };
   };
@@ -51,7 +48,7 @@
   # nixos-rebuild helper
   programs.nh = {
     enable = true;
-    flake = "/home/sioodmy/dev/dotfiles";
+    flake = "/home/adamczykb/dev/dotfiles";
   };
 
   nix = {

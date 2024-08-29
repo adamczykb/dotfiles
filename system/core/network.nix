@@ -12,7 +12,7 @@ in {
     nameservers =
       if dnscrypt
       then ["127.0.0.1" "::1"]
-      else ["1.1.1.1" "1.0.0.1"];
+      else ["192.168.88.1" "1.0.0.1"];
     dhcpcd.extraConfig = mkIf dnscrypt "nohook resolv.conf";
     networkmanager = {
       enable = true;
@@ -26,8 +26,7 @@ in {
     firewall = {
       enable = true;
       allowPing = false;
-      # for chromecast
-      allowedUDPPorts = [10008];
+      allowedUDPPorts = [];
       logReversePathDrops = true;
     };
   };

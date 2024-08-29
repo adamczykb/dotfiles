@@ -14,35 +14,34 @@
 
   shared = [core agenix];
 in {
-  # all my hosts are named after saturn moons btw
-
   # thinkpad
-  calypso = nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
-    modules =
-      [
-        {networking.hostName = "calypso";}
-        ./calypso
-        wayland
-        bootloader
-        impermanence
-        hw.lenovo-thinkpad-x1-7th-gen
-      ]
-      ++ shared;
-    specialArgs = {inherit inputs;};
-  };
+  #  veles = nixpkgs.lib.nixosSystem {
+  #    system = "x86_64-linux";
+  #    modules =
+  #      [
+  #        {networking.hostName = "veles";}
+  #        ./perun
+  #        wayland
+  #        bootloader
+  #        impermanence
+  #        hw.lenovo-thinkpad-x1-7th-gen
+  #      ]
+  #      ++ shared;
+  #    specialArgs = {inherit inputs;};
+  #  };
 
   # x86 home server
-  prometheus = nixpkgs.lib.nixosSystem {
+  perun = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     modules =
       [
         {
-          networking.hostName = "prometheus";
-          boot.loader.grub.devices = ["/dev/sda"];
+          networking.hostName = "perun";
         }
-        server
-        ./prometheus
+        ./perun
+        bootloader
+        wayland
+        impermanence
       ]
       ++ shared;
     specialArgs = {inherit inputs;};

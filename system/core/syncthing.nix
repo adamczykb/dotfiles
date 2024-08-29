@@ -1,9 +1,9 @@
 _: {
   services.syncthing = {
     enable = true;
-    user = "sioodmy";
-    dataDir = "/persist/home/sioodmy/.config/syncthing";
-    configDir = "/persist/home/sioodmy/.config/syncthing";
+    user = "adamczykb";
+    dataDir = "/persist/home/adamczykb/.config/syncthing";
+    configDir = "/persist/home/adamczykb/.config/syncthing";
     guiAddress = "127.0.0.1:8384";
 
     openDefaultPorts = true;

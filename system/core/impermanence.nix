@@ -15,27 +15,22 @@ in {
     directories =
       # persist directories in user directory (stolen from n3oney)
       builtins.map (v: {
-        directory = "/home/sioodmy/${v}";
-        user = "sioodmy";
+        directory = "/home/adamczykb/${v}";
+        user = "adamczykb";
         group = "users";
       }) (
         [
-          "download"
-          "music"
+          "Downloads"
           "dev"
-          "docs"
-          "pics"
-          "vids"
-          "other"
         ]
-        ++ forEach ["syncthing" "obs-studio" "Signal" "niri" "BraveSoftware" "nicotine" "river" "emacs"] (
+        ++ forEach ["syncthing" "Signal" "niri" "nicotine" "river"] (
           x: ".config/${x}"
         )
-        ++ forEach ["tealdeer" "keepassxc" "nix" "starship" "nix-index" "librewolf" "go-build" "BraveSoftware" "zsh" "nvim"] (
+        ++ forEach ["tealdeer" "keepassxc" "nix" "starship" "nix-index" "librewolf" "zsh" "nvim"] (
           x: ".cache/${x}"
         )
-        ++ forEach ["direnv" "TelegramDesktop" "PrismLauncher" "keyrings" "nicotine" "zoxide"] (x: ".local/share/${x}")
-        ++ [".ssh" ".keepass" ".librewolf"]
+        ++ forEach ["direnv" "PrismLauncher" "keyrings" "nicotine" "zoxide"] (x: ".local/share/${x}")
+        ++ [".ssh" ".librewolf"]
       )
       ++ [
         # dirty fix for "no storage left on device" while rebuilding

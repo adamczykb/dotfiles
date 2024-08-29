@@ -1,7 +1,12 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
+    inputs.nix-colors.homeManagerModules.default
     ./fonts.nix
-    ./services.nix
+    # ./services.nix
     ./pipewire.nix
     ./desktop
   ];
@@ -14,25 +19,21 @@
       SSH_AUTH_SOCK = "/run/user/1000/keyring/ssh";
       DISABLE_QT5_COMPAT = "0";
       GDK_BACKEND = "wayland,x11";
-      ANKI_WAYLAND = "1";
       DIRENV_LOG_FORMAT = "";
       WLR_DRM_NO_ATOMIC = "1";
       QT_AUTO_SCREEN_SCALE_FACTOR = "1";
       QT_QPA_PLATFORM = "wayland";
       DISABLE_QT_COMPAT = "0";
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-      MOZ_ENABLE_WAYLAND = "1";
+      MOZ_ENABLE_WAYLAND = "0";
       WLR_BACKEND = "vulkan";
       WLR_RENDERER = "vulkan";
       XDG_SESSION_TYPE = "wayland";
       SDL_VIDEODRIVER = "wayland";
-      XDG_CACHE_HOME = "/home/sioodmy/.cache";
+      XDG_CACHE_HOME = "/home/adamczykb/.cache";
       CLUTTER_BACKEND = "wayland";
-      WLR_DRM_DEVICES = "/dev/dri/card1:/dev/dri/card0";
     };
     loginShellInit = ''
-      dbus-update-activation-environment --systemd DISPLAY
-      sudo mic-light-off
     '';
     systemPackages = with pkgs; [
       pamixer
@@ -42,6 +43,7 @@
     ];
   };
 
+  colorScheme = inputs.nix-colors.colorSchemes.everforest;
   # homix.".config/kanshi/config".text = ''
   #   profile {
   #     output eDP-1 enable scale 1.0
@@ -50,14 +52,16 @@
 
   hardware = {
     graphics.enable = true;
-    pulseaudio.support32Bit = true;
+    # pulseaudio.support32Bit = true;
   };
-
-  xdg.portal = {
-    enable = true;
-    config.common.default = "*";
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-    ];
-  };
+  services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+  # xdg.portal = {
+  # enable = true;
+  # config.common.default = "*";
+  # extraPortals = with pkgs; [
+  # xdg-desktop-portal-gtk
+  # ];
+  # };
 }

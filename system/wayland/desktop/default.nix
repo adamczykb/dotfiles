@@ -14,22 +14,12 @@
   environment.systemPackages =
     (import ./wrapped.nix {inherit pkgs inputs config;})
     ++ (with pkgs; [
-      mpv
-      libnotify
-      dart-sass
       librewolf
-      tor-browser
-      tdesktop
+      firefox
       libreoffice-fresh
-      ytmdl
-      sent
-      nicotine-plus
+      #     nicotine-plus
       inkscape
-      ledger-live-desktop
-      ledger_agent
       pulseaudio
-      signal-desktop
       gimp
-      keepassxc
     ]);
 }

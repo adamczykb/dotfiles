@@ -122,16 +122,7 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 
 local alpha = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
-dashboard.section.header.val = {
-	[[⠀⠀⠀⠀⠀⠀⢀⡤⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀]],
-	[[⠀⠀⠀⠀⠀⢀⡏⠀⠀⠈⠳⣄⠀⠀⠀⠀⠀⣀⠴⠋⠉⠉⡆⠀⠀⠀⠀⠀]],
-	[[⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠈⠉⠉⠙⠓⠚⠁⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀]],
-	[[⠀⠀⠀⠀⢀⠞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣄⠀⠀⠀⠀]],
-	[[⠀⠀⠀⠀⡞⠀⠀⠀⠀⠀⠶⠀⠀⠀⠀⠀⠀⠦⠀⠀⠀⠀⠀⠸⡆⠀⠀⠀]],
-	[[⢠⣤⣶⣾⣧⣤⣤⣀⡀⠀⠀⠀⠀⠈⠀⠀⠀⢀⡤⠴⠶⠤⢤⡀⣧⣀⣀⠀]],
-	[[⠻⠶⣾⠁⠀⠀⠀⠀⠙⣆⠀⠀⠀⠀⠀⠀⣰⠋⠀⠀⠀⠀⠀⢹⣿⣭⣽⠇]],
-	[[⠀⠀⠙⠤⠴⢤⡤⠤⠤⠋⠉⠉⠉⠉⠉⠉⠉⠳⠖⠦⠤⠶⠦⠞⠁⠀⠀ ]],
-}
+dashboard.section.header.val = {}
 dashboard.section.header.opts.hl = "Keyword"
 dashboard.section.buttons.val = {
 	dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
@@ -142,7 +133,7 @@ dashboard.section.buttons.val = {
 	dashboard.button("q", "󰅚  Quit NVIM", ":qa<CR>"),
 }
 
-dashboard.section.footer.val = "meoww :3"
+dashboard.section.footer.val = "Siema!"
 dashboard.section.footer.opts.hl = "Keyword"
 
 dashboard.config.opts.noautocmd = true
@@ -204,6 +195,7 @@ local kind_icons = {
 
 local cmp = require("cmp")
 local luasnip = require("luasnip")
+require("luasnip.loaders.from_vscode").lazy_load()
 
 cmp.setup({
 	mapping = cmp.mapping.preset.insert({
@@ -219,6 +211,8 @@ cmp.setup({
 			"i",
 		}),
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
+		["<C-u>"] = cmp.mapping.scroll_docs(-4),
+		["<C-d>"] = cmp.mapping.scroll_docs(4),
 
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if vim.fn.pumvisible() == 1 then
@@ -261,6 +255,14 @@ cmp.setup({
 		{ name = "vimwiki-tags" },
 	}),
 })
+
+vim.diagnostic.config({
+	virtual_text = false,
+})
+
+-- Show line diagnostics automatically in hover window
+vim.o.updatetime = 250
+vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
 
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 

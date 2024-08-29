@@ -13,7 +13,7 @@
     };
 
   user = {
-    owner = "sioodmy";
+    owner = "adamczykb";
     group = "users";
   };
 in {
@@ -33,12 +33,12 @@ in {
   ];
   # age.secrets.syncthing-key = {
   #   file = syncthing-key.age;
-  #   owner = "sioodmy";
+  #   owner = "adamczykb";
   #   group = "users";
   # };
   # age.secrets.syncthing-cert = {
   #   file = ../../secrets/syncthing-cert.age;
-  #   owner = "sioodmy";
+  #   owner = "adamczykb";
   #   group = "users";
   # };
 }

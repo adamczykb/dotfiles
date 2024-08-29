@@ -1,13 +1,12 @@
 {pkgs, ...}:
 with pkgs; [
-  chatgpt-cli
   zoxide
   fzf
 
   eza
 
   # Tbh should be preinstalled
-  gnumake
+  # gnumake
   # Runs programs without installing them
   comma
 
@@ -17,19 +16,10 @@ with pkgs; [
   # ping, but with cool graph
   gping
 
-  # dns client
-  dogdns
-
   # neofetch but for git repos
   onefetch
 
   git
-
-  # neofetch but for cpu's
-  cpufetch
-
-  # download from yt and other websites
-  yt-dlp
 
   # man pages for tiktok attention span mfs
   tealdeer
@@ -62,9 +52,6 @@ with pkgs; [
   # generate regex
   grex
 
-  # todo app for acoustic people (wrriten by me :3)
-  todo
-
   # json thingy
   jq
 
@@ -77,8 +64,6 @@ with pkgs; [
   dconf
 
   figlet
-  # Generate qr codes
-  qrencode
-
+  tmux
   unzip
 ]

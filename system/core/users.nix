@@ -5,10 +5,10 @@
   ...
 }: {
   imports = [
-    inputs.homix.nixosModules.default
+    inputs.home-manager.nixosModules.default
   ];
 
-  programs.zsh.enable = true;
+  # programs.zsh.enable = true;
   services.openssh = {
     enable = true;
     openFirewall = true;
@@ -24,26 +24,30 @@
       }
     ];
   };
-
+  # home-manager = {
+  # extraSpecialArgs = {inherit inputs;};
+  # users = {
+  # "adamczykb" = import ../../shell/adamczykb.nix;
+  # };
+  # };
   users = {
-    mutableUsers = false;
+    #mutableUsers = false;
     users = {
       root.hashedPasswordFile = "/persist/secrets/root";
-      sioodmy = {
+      adamczykb = {
         isNormalUser = true;
-        homix = true;
+        description = "Bartosz Adamczyk";
         shell = let
           colors = config.colorScheme.palette;
         in
           pkgs.callPackage ../../shell {inherit pkgs inputs colors;};
 
-        hashedPasswordFile = "/persist/secrets/sioodmy";
+        hashedPasswordFile = "/persist/secrets/adamczykb";
         extraGroups = [
           "wheel"
           "gitea"
           "docker"
           "systemd-journal"
-          "vboxusers"
           "audio"
           "plugdev"
           "wireshark"
@@ -54,6 +58,7 @@
           "power"
           "nix"
           "adbusers"
+          "libvirtd"
         ];
         uid = 1000;
         openssh.authorizedKeys.keys = [

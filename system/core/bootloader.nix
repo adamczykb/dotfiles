@@ -24,7 +24,7 @@ in {
     loader = {
       systemd-boot.enable = mkDefault true;
       # spam space to get to boot menu
-      timeout = 0;
+      timeout = 5;
     };
     loader.efi.canTouchEfiVariables = true;
   };

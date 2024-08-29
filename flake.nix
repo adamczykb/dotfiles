@@ -1,6 +1,5 @@
 {
   description = "My NixOS configuration";
-  # https://dotfiles.sioodmy.dev
 
   outputs = {flake-parts, ...} @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} ({...}: {
@@ -64,8 +63,8 @@
     impermanence.url = "github:nix-community/impermanence";
     nix-colors.url = "github:Misterio77/nix-colors";
 
-    wrapper-manager = {
-      url = "github:viperML/wrapper-manager";
+    home-manager = {
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -86,12 +85,10 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-
-    homix = {
-      url = "github:sioodmy/homix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
+    wrapper-manager = {
+      url = "github:viperML/wrapper-manager";
+      # WM's nixpkgs is only used for tests, you can safely drop this if needed.
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     flake-parts = {
@@ -102,30 +99,5 @@
       url = "github:sioodmy/lyricsapi";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    simple-nixos-mailserver = {
-      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    website = {
-      url = "github:sioodmy/website";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
-    };
-    bitcoinstatus = {
-      url = "github:sioodmy/bitcoinstatus";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-        treefmt-nix.follows = "treefmt-nix";
-      };
-    };
   };
 }
-# see also:
-# - https://github.com/notashelf/nyx
-# - https://github.com/fufexan/dotfiles/
-# - https://github.com/n3oney/nixus
-# (I love you guys)
-
