@@ -21,6 +21,7 @@
 in
   (inputs.wrapper-manager.lib.build {
     inherit pkgs;
+  
     modules = [
       {
         wrappers =

@@ -8,7 +8,7 @@
     # inputs.home-manager.nixosModules.default
   ];
 
-  programs.zsh.enable = true;
+  # programs.zsh.enable = true;
   services.openssh = {
     enable = true;
     openFirewall = true;
@@ -33,7 +33,7 @@
   users = {
     #mutableUsers = false;
     users = {
-      root.hashedPasswordFile = "/persist/secrets/root";
+      # root.hashedPasswordFile = "/persist/secrets/root";
       adamczykb = {
         isNormalUser = true;
         description = "Bartosz Adamczyk";

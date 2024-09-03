@@ -30,7 +30,7 @@
             ]
             ++ (import ./shell/packages.nix {inherit pkgs;});
           shellHook = ''
-         devenv 
+            devenv 
           '';
         };
 
