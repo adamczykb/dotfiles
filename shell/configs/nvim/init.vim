@@ -37,9 +37,13 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fn <cmd>Telescope orgmode search_headings<cr>
 nnoremap <leader>fh <cmd>Telescope harpoon marks<cr>
 nnoremap <leader>z  <cmd>ZenMode <cr>
-nnoremap <leader>b  <cmd>Neotree toggle<cr>
+nnoremap <leader>e  <cmd>Neotree toggle<cr>
 nnoremap <leader>g <cmd>Git <cr>
 nnoremap <leader>u <cmd>UndotreeToggle <cr>
+nnoremap <TAB> <cmd>bnext <cr>
+nnoremap <s-TAB> <cmd>bprevious <cr>
+nnoremap <leader>x <cmd>bdelete <cr>
+
 
 nnoremap <leader>m <cmd>lua require("harpoon.mark").add_file()<cr>
 nnoremap <leader>hp <cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>
@@ -102,3 +106,4 @@ set noshowmode
 
 " modeline magic
 set modeline
+colorscheme kanagawa

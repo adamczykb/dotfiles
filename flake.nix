@@ -24,13 +24,12 @@
             colors = inputs.nix-colors.colorSchemes.catppuccin-frappe.palette;
           in
             [
-              inputs'.agenix.packages.default
               config.treefmt.build.wrapper
               (pkgs.callPackage ./shell {inherit pkgs inputs colors;})
             ]
             ++ (import ./shell/packages.nix {inherit pkgs;});
           shellHook = ''
-            devenv 
+            devenv
           '';
         };
 
@@ -63,10 +62,10 @@
     impermanence.url = "github:nix-community/impermanence";
     nix-colors.url = "github:Misterio77/nix-colors";
 
-    # home-manager = {
-    #   url = "github:nix-community/home-manager";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # a tree-wide formatter
     treefmt-nix = {
@@ -95,6 +94,5 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-    
   };
 }

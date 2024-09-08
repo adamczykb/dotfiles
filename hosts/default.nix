@@ -41,6 +41,7 @@ in {
         ./perun
         bootloader
         wayland
+        inputs.home-manager.nixosModules.default
         # impermanence
         agenix
       ]

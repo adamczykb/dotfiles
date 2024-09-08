@@ -9,16 +9,15 @@
       inherit (value) src;
     }) (pkgs.callPackages ./_sources/generated.nix {});
 
-  theme = with colors; ''
-
-  '';
-
-  lua = pkgs.writeText "init.lua" (theme + builtins.readFile ./init.lua);
+  lua = pkgs.writeText "init.lua" (builtins.readFile ./init.lua);
 
   neovimConfig = pkgs.neovimUtils.makeNeovimConfig {
-    withPython3 = false;
+    withPython3 = true;
     withRuby = false;
-    withNodeJs = false;
+    withNodeJs = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+
     customRC = ''
       source ${./init.vim}
       :luafile ${lua}
@@ -27,6 +26,7 @@
     plugins =
       (builtins.attrValues nvfetcher)
       ++ (with pkgs.vimPlugins; [
+        kanagawa-nvim
         lualine-nvim
         nvim-web-devicons
         gitsigns-nvim
@@ -51,7 +51,8 @@
         nvim-cokeline
         fidget-nvim
         nvim-notify
-
+        markdown-preview-nvim
+        haskell-tools-nvim
         # Language support
         nvim-lspconfig
         nvim-cmp
@@ -60,7 +61,8 @@
         cmp-nvim-lsp
         cmp-buffer
         cmp-path
-
+        lazy-nvim
+        nvim-jdtls
         nvim-treesitter.withAllGrammars
 
         vimwiki
@@ -84,7 +86,11 @@ in {
     bash-language-server
     clang-tools
     zls
+    pyright
     gleam
+    haskellPackages.hoogle
+    jdt-language-server
+    haskell-language-server
     nodePackages.typescript-language-server
     nodePackages.prettier
     clang-tools

@@ -32,12 +32,10 @@
     fsType = "vfat";
     options = ["fmask=0022" "dmask=0022"];
   };
-  # fileSystems."/persist" = {
-  #   neededForBoot = true;
-  #   device = "/dev/disk/by-uuid/eebd21e7-384d-420e-80bd-7842bdb2efd0";
-  #   fsType = "btrfs";
-  #   options = ["noatime" "discard" "subvol=@persist" "compress=zstd"];
-  # };
+  fileSystems."/persist" = {
+    device = "/dev/disk/by-uuid/eebd21e7-384d-420e-80bd-7842bdb2efd0";
+    fsType = "btrfs";
+  };
   #
   swapDevices = [{device = "/dev/disk/by-uuid/a02c097b-2be9-4321-84dc-dfd8333fe5b7";}];
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -49,40 +47,47 @@
   services.xserver.videoDrivers = ["nvidia"];
   boot.kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
   # Enable OpenGL
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
+  hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [
+        vaapiVdpau
+        nvidia-vaapi-driver
+      ];
+    };
+    nvidia = {
+      # Modesetting is required.
+      modesetting.enable = true;
+      nvidiaPersistenced = true;
+
+      # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+      # Enable this if you have graphical corruption issues or application crashes after waking
+      # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
+      # of just the bare essentials.
+      powerManagement.enable = true;
+
+      # Fine-grained power management. Turns off GPU when not in use.
+      # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+      powerManagement.finegrained = false;
+      # Use the NVidia open source kernel module (not to be confused with the
+      # independent third-party "nouveau" open source driver).
+      # Support is limited to the Turing and later architectures. Full list of
+      # supported GPUs is at:
+      # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
+      # Only available from driver 515.43.04+
+      # Currently alpha-quality/buggy, so false is currently the recommended setting.
+      open = false;
+      # Enable the Nvidia settings menu,
+      # accessible via `nvidia-settings`.
+      nvidiaSettings = true;
+
+      # Optionally, you may need to select the appropriate driver version for your specific GPU.
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+    };
   };
   # Load nvidia driver for Xorg and Wayland
-  hardware.nvidia = {
-    # Modesetting is required.
-    modesetting.enable = true;
-    nvidiaPersistenced = true;
 
-    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-    # Enable this if you have graphical corruption issues or application crashes after waking
-    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
-    # of just the bare essentials.
-    powerManagement.enable = true;
-
-    # Fine-grained power management. Turns off GPU when not in use.
-    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-    powerManagement.finegrained = false;
-    # Use the NVidia open source kernel module (not to be confused with the
-    # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of
-    # supported GPUs is at:
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
-    # Only available from driver 515.43.04+
-    # Currently alpha-quality/buggy, so false is currently the recommended setting.
-    open = false;
-    # Enable the Nvidia settings menu,
-    # accessible via `nvidia-settings`.
-    nvidiaSettings = true;
-
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
   hardware.nvidia-container-toolkit.enable = true;
   programs.sway.enable = true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

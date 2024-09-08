@@ -1,7 +1,6 @@
 {pkgs, ...}:
 with pkgs; [
   zoxide
-  fzf
 
   eza
 

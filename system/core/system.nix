@@ -41,6 +41,7 @@
     uutils-coreutils-noprefix
     btrfs-progs
     # cifs-utils
+
     appimage-run
     starship # having starship here means pkgs.startship will be stored during build and not during promptInit
   ];
@@ -111,7 +112,9 @@
       "D /nix/var/nix/profiles/per-user/root 755 root root - -"
     ];
   };
-
+  imports = [
+    ../../secrets/secrets.nix
+  ];
   programs = {
     # allow users to mount fuse filesystems with allow_other
     fuse.userAllowOther = true;

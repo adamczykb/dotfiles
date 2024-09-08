@@ -2,12 +2,10 @@
   pkgs,
   inputs,
   config,
+  agenix,
   ...
 }: {
-  imports = [
-    # inputs.home-manager.nixosModules.default
-  ];
-
+  programs.fuse.userAllowOther = true;
   # programs.zsh.enable = true;
   services.openssh = {
     enable = true;
@@ -24,25 +22,30 @@
       }
     ];
   };
-  # home-manager = {
-  # extraSpecialArgs = {inherit inputs;};
-  # users = {
-  # "adamczykb" = import ../../shell/adamczykb.nix;
-  # };
-  # };
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    verbose = true;
+    extraSpecialArgs = {inherit inputs;};
+    users = {
+      "adamczykb" = import ../../home-manager/home.nix;
+    };
+  };
+  age.secrets.userPassword.file = ../../secrets/secret.age;
   users = {
     #mutableUsers = false;
     users = {
       # root.hashedPasswordFile = "/persist/secrets/root";
       adamczykb = {
         isNormalUser = true;
+
         description = "Bartosz Adamczyk";
         shell = let
           colors = config.colorScheme.palette;
         in
           pkgs.callPackage ../../shell {inherit pkgs inputs colors;};
 
-        hashedPasswordFile = "/persist/secrets/adamczykb";
+        # passwordFile = config.age.secrets.userPassword.path;
         extraGroups = [
           "wheel"
           "gitea"

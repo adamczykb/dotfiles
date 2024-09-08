@@ -253,7 +253,10 @@ cmp.setup.cmdline(":", {
 -- LSP
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local nvim_lsp = require("lspconfig")
-
+require("jdtls").start_or_attach({
+	cmd = { "jdtls" },
+	root_dir = vim.fs.dirname(vim.fs.find({ "gradlew", ".git", "mvnw", "pom.xml" }, { upward = true })[1]),
+})
 nvim_lsp.rnix.setup({
 	capabilities = capabilities,
 	autostart = true,
@@ -274,7 +277,7 @@ nvim_lsp.bashls.setup({})
 nvim_lsp.clangd.setup({})
 nvim_lsp.zls.setup({})
 nvim_lsp.gleam.setup({})
-
+nvim_lsp.pyright.setup({})
 local on_attach = function(client)
 	require("completion").on_attach(client)
 end
@@ -313,7 +316,6 @@ require("nvim-treesitter.configs").setup({
 	},
 	additional_vim_regex_highlighting = false,
 })
-
 require("trouble").setup({})
 
 vim.o.timeout = true

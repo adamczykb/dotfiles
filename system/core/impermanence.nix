@@ -3,13 +3,14 @@
   lib,
   ...
 }: let
-  inherit (lib) forEach;
+  inherit (lib) forEach types mkOption;
 in {
   imports = [inputs.impermanence.nixosModule];
   fileSystems."/etc/ssh" = {
     depends = ["/persist"];
     neededForBoot = true;
   };
+
   environment.persistence."/persist" = {
     hideMounts = true;
     directories =
@@ -20,15 +21,15 @@ in {
         group = "users";
       }) (
         [
-          "dev"
+          ".thunderbird"
         ]
-        ++ forEach [ ] (
+        ++ forEach [] (
           x: ".config/${x}"
         )
-        ++ forEach ["tealdeer" "keepassxc" "nix" "starship" "nix-index" "librewolf" "zsh" "nvim"] (
+        ++ forEach ["tealdeer" "nix" "starship" "nix-index" "librewolf" "zsh" "nvim" "thunderbird"] (
           x: ".cache/${x}"
         )
-        ++ forEach ["direnv" "PrismLauncher" "keyrings" "nicotine" "zoxide"] (x: ".local/share/${x}")
+        ++ forEach ["direnv" "keyrings" "nicotine" "zoxide"] (x: ".local/share/${x}")
         ++ [".ssh" ".librewolf"]
       )
       ++ [
