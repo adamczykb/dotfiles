@@ -17,6 +17,15 @@
           chars = "\\u000c";
         }
       ];
+      font = {
+        normal = {
+          family = "Iosevka Term";
+          style = "monospace";
+        };
+      };
+      background_opacity = 0.95;
+      env = {"TERM" = "xterm-256color";};
+      shell = "devenv";
     };
   };
 }

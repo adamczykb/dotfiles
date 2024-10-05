@@ -36,7 +36,7 @@
       lidSwitchExternalPower = "suspend";
       extraConfig = ''
         HandlePowerKey=suspend
-        HibernateDelaySec=3600
+        HibernateDelaySec=300
       '';
     };
 

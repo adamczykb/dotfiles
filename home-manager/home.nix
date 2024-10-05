@@ -21,6 +21,7 @@
     ./modules/programs/alacritty.nix
     ./modules/programs/thunderbird.nix
     ./modules/programs/htop.nix
+    ./modules/programs/tmux.nix
   ];
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

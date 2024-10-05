@@ -6,7 +6,7 @@
   imports = [
     inputs.nix-colors.homeManagerModules.default
     ./fonts.nix
-    # ./services.nix
+    ./services.nix
     ./pipewire.nix
     ./desktop
   ];

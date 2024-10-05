@@ -6,7 +6,7 @@
       user = {
         email = "contact@bartekadamczyk.eu";
         name = "adamczykb";
-        # signingKey = "056CFD15A9F99B0E";
+        signingKey = "A1A7B1C24CDDC97B";
       };
       init = {defaultBranch = "main";};
       branch.autosetupmerge = "true";

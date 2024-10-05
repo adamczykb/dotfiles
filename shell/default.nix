@@ -18,31 +18,32 @@
   aliasesStr =
     pkgs.lib.concatStringsSep "\n"
     (pkgs.lib.mapAttrsToList (k: v: "alias ${k}=\"${v}\"") aliases);
-in
-  (inputs.wrapper-manager.lib.build {
-    inherit pkgs;
-  
-    modules = [
-      {
-        wrappers =
-          {
-            zsh = {
-              basePackage = pkgs.zsh;
-              pathAdd = packages;
-              env = {
-                STARSHIP_CONFIG.value = toml.generate "starship.toml" starship-settings;
-                ZDOTDIR.value = "${zconfig}/bin";
-              };
-              renames = {
-                 "zsh" = "devenv";
-               };
+in (inputs.wrapper-manager.lib.build {
+  inherit pkgs;
+
+  modules = [
+    {
+      wrappers =
+        {
+          zsh = {
+            basePackage = pkgs.zsh;
+            pathAdd = packages;
+            env = {
+              STARSHIP_CONFIG.value = toml.generate "starship.toml" starship-settings;
+              ZDOTDIR.value = "${zconfig}/bin";
             };
-          } // configs;
-      }
-    ];
-  })
-  .overrideAttrs (_: {
-    passthru = {
-      shellPath = "/bin/devenv";
-    };
-  })
+            renames = {
+              "zsh" = "devenv";
+            };
+          };
+        }
+        // configs;
+    }
+  ];
+})
+# .overrideAttrs (_: {
+#   passthru = {
+#     shellPath = "/bin/devenv";
+#   };
+# })
+

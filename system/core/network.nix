@@ -12,7 +12,7 @@ in {
     nameservers =
       if dnscrypt
       then ["127.0.0.1" "::1"]
-      else ["192.168.88.1" "1.0.0.1"];
+      else ["192.168.88.1" "8.8.8.8"];
     dhcpcd.extraConfig = mkIf dnscrypt "nohook resolv.conf";
     networkmanager = {
       enable = true;
@@ -28,6 +28,9 @@ in {
       allowPing = false;
       allowedUDPPorts = [];
       logReversePathDrops = true;
+    };
+    hosts = {
+      "192.168.88.253" = ["www.bartekadamczyk.eu" "www.matrament.com"];
     };
   };
 

@@ -63,6 +63,5 @@ with pkgs; [
   dconf
 
   figlet
-  tmux
   unzip
 ]

@@ -20,4 +20,5 @@ pkgs.writeShellScriptBin ".zshrc" ''
 
 
   ${aliasesStr}
+
 ''
