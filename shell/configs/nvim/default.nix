@@ -52,7 +52,6 @@
         fidget-nvim
         nvim-notify
         markdown-preview-nvim
-        haskell-tools-nvim
         # Language support
         nvim-lspconfig
         nvim-cmp
@@ -61,10 +60,9 @@
         cmp-nvim-lsp
         cmp-buffer
         cmp-path
-        lazy-nvim
         nvim-jdtls
         nvim-treesitter.withAllGrammars
-
+        haskell-tools-nvim
         vimwiki
         cmp-vimwiki-tags
         mattn-calendar-vim

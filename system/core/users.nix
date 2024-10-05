@@ -27,6 +27,7 @@
     useUserPackages = true;
     verbose = true;
     extraSpecialArgs = {inherit inputs;};
+    backupFileExtension = "backup";
     users = {
       "adamczykb" = import ../../home-manager/home.nix;
     };
