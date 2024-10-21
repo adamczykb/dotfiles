@@ -67,4 +67,4 @@
   environment.systemPackages = with pkgs; [
     unstable.cudaPackages.cudatoolkit
   ];
-
+}

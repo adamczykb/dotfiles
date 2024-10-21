@@ -29,7 +29,7 @@
     extraSpecialArgs = {inherit inputs;};
     backupFileExtension = "backup";
     users = {
-      "adamczykb" = import ../../home-manager/home.nix;
+      "adamczykb" = import ../../home/home.nix;
     };
   };
   age.secrets.userPassword.file = ../../secrets/secret.age;

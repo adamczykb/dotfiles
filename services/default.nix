@@ -1,7 +1,7 @@
 {
   imports = [
     # services
-    ../../services/ags
+    # ./ags
 
     # media services
     ./media/spotifyd.nix
@@ -16,10 +16,8 @@
     # ../../services/system/udiskie.nix
     #
     # wayland-specific
-    ./wayland/gammastep.nix
+    # ./wayland/gammastep.nix
     ./wayland/hyprpaper.nix
-    ./wayland/hypridle.nix
-    ./wayland/wluma.nix
 
     # terminal emulators
   ];

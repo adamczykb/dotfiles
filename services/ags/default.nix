@@ -16,6 +16,7 @@
     procps
     ripgrep
     util-linux
+    gnome.gnome-bluetooth
   ];
 
   guiDeps = with pkgs; [

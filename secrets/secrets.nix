@@ -5,5 +5,5 @@ let
   # systems = [system1];
 in {
   "spotify.age".publicKeys = [adamczykb];
-  # "secret.age".publicKeys = [user1];
+  "secret.age".publicKeys = [adamczykb];
 }

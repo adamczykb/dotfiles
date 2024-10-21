@@ -41,7 +41,8 @@
       kanshi
       gnome-control-center
       # screenshot
-
+      overskride
+      mission-center
       grim
       slurp
 
@@ -59,13 +60,13 @@
     graphics.enable = true;
     # pulseaudio.support32Bit = true;
   };
-  home.pointerCursor = {
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Classic";
-    size = 16;
-    gtk.enable = true;
-    x11.enable = true;
-  };
+  # home.pointerCursor = {
+  #   package = pkgs.bibata-cursors;
+  #   name = "Bibata-Modern-Classic";
+  #   size = 16;
+  #   gtk.enable = true;
+  #   x11.enable = true;
+  # };
   # services.xserver.enable = true;
   # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;

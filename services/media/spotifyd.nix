@@ -3,7 +3,7 @@
   config,
   ...
 }: {
-  home.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     spotify-tui
   ];
 
