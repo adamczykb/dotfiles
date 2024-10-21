@@ -95,7 +95,7 @@ in {
     cargo
     nixd
     stylua
-
+    haskellPackages.implicit-hie
     # required for my goofy ahh plugin :3
     libsixel
   ];

@@ -34,14 +34,13 @@
 
   environment.variables = {
     EDITOR = "nvim";
-    BROWSER = "librewolf";
+    BROWSER = "firefox";
   };
   environment.systemPackages = with pkgs; [
     git
     uutils-coreutils-noprefix
     btrfs-progs
     # cifs-utils
-
     appimage-run
     starship # having starship here means pkgs.startship will be stored during build and not during promptInit
   ];

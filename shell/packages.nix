@@ -61,7 +61,8 @@ with pkgs; [
   rsync
 
   dconf
-
+  rustup
   figlet
   unzip
+  hs
 ]

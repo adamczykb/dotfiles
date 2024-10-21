@@ -10,5 +10,5 @@ in rec {
 
   ":q" = "exit";
 
-  cat = "${getExe pkgs.bat} --plain";
+  cat = "${getExe pkgs.bat} -p";
 }

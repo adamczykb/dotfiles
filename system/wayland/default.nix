@@ -8,7 +8,7 @@
     ./fonts.nix
     ./services.nix
     ./pipewire.nix
-    ./desktop
+    ../../services/default.nix
   ];
   environment = {
     variables = {
@@ -38,8 +38,18 @@
     systemPackages = with pkgs; [
       pamixer
       brightnessctl
-      wl-clipboard
       kanshi
+      gnome-control-center
+      # screenshot
+
+      grim
+      slurp
+
+      # utils
+      self.packages.${pkgs.system}.wl-ocr
+      wl-clipboard
+      wl-screenrec
+      wlr-randr
     ];
   };
 
@@ -49,9 +59,16 @@
     graphics.enable = true;
     # pulseaudio.support32Bit = true;
   };
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  home.pointerCursor = {
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 16;
+    gtk.enable = true;
+    x11.enable = true;
+  };
+  # services.xserver.enable = true;
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
   # xdg.portal = {
   # enable = true;
   # config.common.default = "*";
